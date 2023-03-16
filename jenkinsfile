@@ -17,8 +17,10 @@ pipeline{
                 echo "====executing A===="
                 
                 bat "docker tag myimg darshan8998/custom-image"
-                bat "docker login -u darshan8998 -p dckr_pat_q0Ui5H5k3_3Nn5DrL8U3t_XVT7o"
-                bat "docker push darshan8998/custom-image"
+                withCredentials([usernameColonPassword(credentialsId: 'c84edba2-a62c-4aff-b123-d7a98a58aba3', variable: 'pwd')]) {
+                    bat "docker login -u darshan8998 -p ${pwd}"
+                    bat "docker push darshan8998/custom-image"
+                }
             }
         }
         stage("Deploy on prod"){
