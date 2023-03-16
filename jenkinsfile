@@ -9,7 +9,7 @@ pipeline{
         stage("Build"){
             steps{
                 echo "====executing A===="
-                bat "docker build -t darshan8998/custom-image ."
+                bat "docker build -t myimg ."
             }
         }
         stage("Deploy on test"){
