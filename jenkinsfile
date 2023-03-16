@@ -17,8 +17,8 @@ pipeline{
                 echo "====executing A===="
                 
                 bat "docker tag myimg darshan8998/custom-image"
-                withCredentials([usernameColonPassword(credentialsId: 'c84edba2-a62c-4aff-b123-d7a98a58aba3', variable: 'pwd')]) {
-                    bat "docker login -u darshan8998 -p ${pwd}"
+                withCredentials([usernamePassword(credentialsId: 'c84edba2-a62c-4aff-b123-d7a98a58aba3', passwordVariable: 'pwd', usernameVariable: 'uname')]) {
+                    bat "docker login -u ${uname} -p ${pwd}"
                     bat "docker push darshan8998/custom-image"
                 }
             }
