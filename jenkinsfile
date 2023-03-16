@@ -1,23 +1,23 @@
 pipeline{
     agent any
-    tools {
-        maven 'MAVEN' 
-    }
     stages{
         stage("Test"){
             steps{
-                bat "mvn --version"
                 echo "====executing A===="
             }
         }
         stage("Build"){
             steps{
                 echo "====executing A===="
+                bat "docker tag myimg darshan8998/custom-image"
+                bat "docker login -u darshan8998 -p dckr_pat_q0Ui5H5k3_3Nn5DrL8U3t_XVT7o"
+                bat "docker build -t darshan8998/custom-image ."
             }
         }
         stage("Deploy on test"){
             steps{
                 echo "====executing A===="
+                bat "docker push "
             }
         }
         stage("Deploy on prod"){
