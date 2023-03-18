@@ -25,7 +25,9 @@ pipeline{
         }
         stage("Deploy on prod"){
             steps{
-                echo "====executing A===="
+                echo "====executing A====" 
+                bat "docker pull darshan8998/custom-image:latest"
+                bat "docker run -d custom-image:latest"
             }
         }
     }
